@@ -1,5 +1,7 @@
 # Walking with God（与神同行）
 
+点击查看天赋树网页https://23156980.github.io/Walking-with-God-Demo/
+
 ## Abstract (English)
 
 *Walking with God* is a narrative-driven RPG prototype inspired by Dante’s *Divine Comedy*, particularly the framework of the Seven Deadly Sins. The project develops a behavior–space mapping system that translates abstract moral constructs into spatial rules and experiential sequences. Through a chapter-based structure, each level corresponds to a specific behavioral condition and spatial mechanism, shaping a progressive process of transformation. Grounded in the urban context of Rocinha Favela in Rio de Janeiro, the project integrates real spatial conditions with symbolic narrative logic. AI tools, including Luma AI, Seedream 4.5, and Workbuddy, are employed to assist in spatial visualization and scene generation. The project ultimately explores the possibility of constructing a systematic, narrative-driven spatial experience that connects moral reflection, urban context, and interactive design.
