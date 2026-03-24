@@ -27,8 +27,6 @@
     --gold: #c9a84c;
     --parchment: #f5f0e8;
     --stone: #2a2520;
-    --arch-red: #c41e3a;
-    --arch-bg: #f5f5f0;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,9 +35,119 @@
     background: var(--dark-bg);
     color: var(--parchment);
     font-family: 'Noto Serif SC', serif;
-    overflow-y: auto;
-    min-height: 100vh;
+    overflow: hidden;
+    height: 100vh;
     width: 100vw;
+  }
+
+  /* ===== FIRST SCREEN - LANDING ===== */
+  #first-screen {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #1a0f0a 0%, #0a0505 60%, #000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+  }
+
+  #first-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .first-cross {
+    font-size: 5rem;
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.4);
+    margin-bottom: 1rem;
+    animation: crossPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes crossPulse {
+    0%,100% { text-shadow: 0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.4); }
+    50% { text-shadow: 0 0 60px rgba(201,168,76,1), 0 0 120px rgba(201,168,76,0.7), 0 0 200px rgba(201,168,76,0.3); }
+  }
+
+  .first-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+  }
+
+  .first-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: #b09070;
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .first-divider {
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+
+  .first-buttons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .btn-enter {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--dark-bg);
+    background: linear-gradient(135deg, var(--gold), #8b6914);
+    border: none;
+    padding: 1rem 3rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(201,168,76,0.3);
+  }
+
+  .btn-enter:hover {
+    background: linear-gradient(135deg, #e8c060, var(--gold));
+    box-shadow: 0 0 50px rgba(201,168,76,0.6);
+    transform: scale(1.05);
+  }
+
+  .btn-read {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--gold);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(201,168,76,0.1);
+  }
+
+  .btn-read:hover {
+    background: rgba(201,168,76,0.1);
+    box-shadow: 0 0 40px rgba(201,168,76,0.3);
+    transform: scale(1.05);
   }
 
   /* ===== SCREENS ===== */
@@ -60,23 +168,12 @@
     overflow: hidden;
   }
 
-  .intro-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
   .intro-cross {
     font-size: 5rem;
     color: var(--gold);
     text-shadow: 0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.4);
     margin-bottom: 1rem;
     animation: crossPulse 3s ease-in-out infinite;
-  }
-
-  @keyframes crossPulse {
-    0%,100% { text-shadow: 0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.4); }
-    50% { text-shadow: 0 0 60px rgba(201,168,76,1), 0 0 120px rgba(201,168,76,0.7), 0 0 200px rgba(201,168,76,0.3); }
   }
 
   .intro-title {
@@ -600,10 +697,21 @@
     z-index: 0;
   }
 
-
 </style>
 </head>
 <body>
+
+<!-- ===== FIRST SCREEN - LANDING ===== -->
+<div id="first-screen">
+  <div class="first-cross">✝</div>
+  <div class="first-title">Walking with God</div>
+  <div class="first-subtitle">A Spatial Narrative System based on the Seven Deadly Sins</div>
+  <div class="first-divider"></div>
+  <div class="first-buttons">
+    <button class="btn-enter" onclick="enterSite()">ENTER</button>
+    <a href="https://github.com/23156980/Walking-with-God-Demo" target="_blank" class="btn-read">Read Concept</a>
+  </div>
+</div>
 
 <!-- Loading -->
 <div class="loading-overlay" id="loading">
@@ -704,6 +812,17 @@
 <script src="talent-tree.js"></script>
 <script src="dialogue-engine.js"></script>
 <script src="game-main.js"></script>
+
+<script>
+// First screen enter function
+function enterSite() {
+  const firstScreen = document.getElementById('first-screen');
+  firstScreen.classList.add('hidden');
+  setTimeout(() => {
+    firstScreen.style.display = 'none';
+  }, 800);
+}
+</script>
 
 </body>
 </html>
